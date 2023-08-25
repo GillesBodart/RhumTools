@@ -1,5 +1,5 @@
 name: Backend CI
-run-name: ${{ github.actor }} is doing some dark underground CI for Jeff 🚀
+run-name: ${{ github.actor }} is doing some dark underground CI for RhumTools 🚀
 
 on:
   push:
@@ -25,4 +25,4 @@ jobs:
           cash: "yarn"
       - name: Install dependencies
         run: yarn
-        working-directory: Jeff-Back
+        working-directory: RT-Back
