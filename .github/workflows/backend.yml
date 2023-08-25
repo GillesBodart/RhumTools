@@ -1,0 +1,28 @@
+name: Backend CI
+run-name: ${{ github.actor }} is doing some dark underground CI for Jeff 🚀
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [15.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cash: "yarn"
+      - name: Install dependencies
+        run: yarn
+        working-directory: Jeff-Back

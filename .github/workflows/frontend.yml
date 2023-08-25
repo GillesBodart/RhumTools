@@ -1,0 +1,36 @@
+name: Frontend CI
+run-name: ${{ github.actor }} is doing some magic CI for Jeff 🚀
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main
+jobs:
+  CI-CD:
+    runs-on: ubuntu-latest
+    env:
+      TZ: "Europe/Bruxelles"
+      LANG: "fr_BE.UTF-8"
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Install dependancies
+        run: yarn
+        working-directory: Jeff-Front
+      - name: Package the site
+        run: yarn run build
+        working-directory: Jeff-Front
+      - name: Display the generated files
+        run: ls -larth
+        working-directory: Jeff-Front/dist
+      - name: Deploy on the server
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_JEFF_413E8 }}'
+          channelId: live
+          projectId: jeff-413e8
+
