@@ -6,15 +6,13 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [ 15.x ]
 
     steps:
       - uses: actions/checkout@v3
